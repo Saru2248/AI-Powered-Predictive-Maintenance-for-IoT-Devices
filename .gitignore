@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Distribution / Packaging
+.eggs/
+dist/
+build/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# Data files (large)
+data/raw/*.csv
+data/raw/*.xlsx
+data/raw/*.zip
+
+# Model files
+models/*.pkl
+models/*.joblib
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment Variables
+.env
+.env.local
+
+# Outputs (optional - remove if you want to track outputs)
+# outputs/

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Predictive Maintenance Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Plotly for interactive charts -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-name"> AI</div>
+          <div class="brand-sub">Industrial IoT Maintenance</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="live-badge">
+          <div class="live-dot"></div> LIVE SYSTEM LOG
+        </div>
+        <div class="clock" id="clock">00:00:00</div>
+        <button class="refresh-btn" onclick="fetchSummary(); fetchAlerts();">↻ Refresh Data</button>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-section-label">Navigation</div>
+      <div class="nav-item active" onclick="showSection('overview', this)">
+        <span class="nav-icon">📊</span> Overview
+      </div>
+      <div class="nav-item" onclick="showSection('alerts', this)">
+        <span class="nav-icon">🚨</span> Alerts & Risk
+      </div>
+      <div class="nav-item" onclick="showSection('analytics', this)">
+        <span class="nav-icon">📈</span> System Analytics
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-section-label">Machine Fleet View</div>
+      <div class="machine-list" id="machine-nav-list">
+        <!-- Machine buttons injected via JS -->
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main">
+
+      <!-- SECTION: OVERVIEW -->
+      <section id="section-overview" class="page-section active fade-in">
+        <div>
+          <h1 class="page-title">Fleet Setup Overview</h1>
+          <div class="page-subtitle">Real-time status of all industrial IoT assets.</div>
+        </div>
+
+        <!-- KPI Row -->
+        <div class="kpi-grid">
+          <div class="kpi-card blue">
+            <span class="kpi-icon">🏭</span>
+            <div class="kpi-value" id="kpi-machines">0</div>
+            <div class="kpi-label">Active Machines</div>
+          </div>
+          <div class="kpi-card red">
+            <span class="kpi-icon">🚨</span>
+            <div class="kpi-value" id="kpi-critical">0</div>
+            <div class="kpi-label">Critical Alerts</div>
+          </div>
+          <div class="kpi-card orange">
+            <span class="kpi-icon">⚠</span>
+            <div class="kpi-value" id="kpi-high">0</div>
+            <div class="kpi-label">High Risk Warnings</div>
+          </div>
+          <div class="kpi-card purple">
+            <span class="kpi-icon">🧠</span>
+            <div class="kpi-value" id="kpi-avgprob">0%</div>
+            <div class="kpi-label">Avg. Failure Probability</div>
+          </div>
+        </div>
+
+        <!-- Latest Fleet Status Cards -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🌐 Live Machine Fleet Status</div>
+          </div>
+          <div class="card-body">
+            <div class="machines-row" id="fleet-live-status">
+              <!-- Live machine cards injected via JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="charts-row">
+          <!-- Live Telemetry Graph -->
+          <div class="card chart-container">
+            <div class="card-header">
+              <div class="card-title">📈 Live Sensor Telemetry — Machine 1</div>
+              <div class="tab-group" id="sensor-tabs">
+                <!-- Tabs injected JS -->
+              </div>
+            </div>
+            <div class="card-body">
+              <div id="plot-live-sensor" style="width:100%; height:300px;"></div>
+            </div>
+          </div>
+
+          <!-- Risk Gauge -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">⚡ Failure Probability</div>
+            </div>
+            <div class="card-body" style="text-align: center;">
+              <div id="plot-risk-gauge" style="width:100%; height:300px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: ALERTS -->
+      <section id="section-alerts" class="page-section fade-in">
+        <div class="section-header">
+          <div>
+            <h1 class="page-title">Predictive Maintenance Alerts</h1>
+            <div class="page-subtitle">AI-generated failure predictions and threshold breaches.</div>
+          </div>
+          <div class="section-count" id="alert-count-label">0 Alerts Found</div>
+        </div>
+
+        <div class="card">
+          <div class="card-body alert-table-wrap">
+            <table id="alert-table">
+              <thead>
+                <tr>
+                  <th>Machine ID</th>
+                  <th>Timestamp</th>
+                  <th>Risk Level</th>
+                  <th>AI Probability</th>
+                  <th>Reasoning / Sensor Alert</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Alert rows injected JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: ANALYTICS (Images generated by visualizer.py) -->
+      <section id="section-analytics" class="page-section fade-in">
+        <div>
+          <h1 class="page-title">Advanced System Analytics</h1>
+          <div class="page-subtitle">Production-quality data science reports generated by the ML pipeline.</div>
+        </div>
+
+        <div class="gallery-grid" id="charts-gallery">
+          <!-- Gallery images injected here -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Image Modal -->
+  <div class="modal-overlay" id="img-modal" onclick="closeModal()">
+    <button class="modal-close">&times;</button>
+    <img src="" class="modal-img" id="modal-img-src">
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

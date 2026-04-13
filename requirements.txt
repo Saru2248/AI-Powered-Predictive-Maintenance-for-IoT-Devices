@@ -1,0 +1,33 @@
+# ============================================================
+# AI-Powered Predictive Maintenance for IoT Devices
+# Requirements File
+# ============================================================
+
+# Core Data Science
+numpy==1.26.4
+pandas==2.2.2
+
+# Machine Learning
+scikit-learn==1.4.2
+imbalanced-learn==0.12.2
+xgboost==2.0.3
+
+# Visualization
+matplotlib==3.8.4
+seaborn==0.13.2
+plotly==5.22.0
+
+# Model Persistence
+joblib==1.4.2
+
+# Progress Bar
+tqdm==4.66.4
+
+# Utilities
+python-dateutil==2.9.0
+scipy==1.13.0
+
+# NOTE: Jupyter Notebook is NOT listed here to avoid Windows
+# Long Path errors. Install it separately if needed:
+#   pip install notebook
+# OR use VS Code with the Jupyter extension (recommended).

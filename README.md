@@ -320,23 +320,7 @@ After studying this project, you will understand:
 
 ## 👨‍💻 Author
 
-**Your Name**  
-📧 your.email@example.com  
-🔗 [LinkedIn](https://linkedin.com/in/yourprofile) | [GitHub](https://github.com/yourusername)
+**Sarthak Dhumal**  
+📧 svd8007@gmail.com
+🔗 [LinkedIn](https://www.linkedin.com/in/sarthak-dhumal-07555a211/) | [GitHub](https://github.com/Saru2248)
 
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — feel free to use, modify, and distribute!
-
----
-
-<div align="center">
-
-⭐ **If this project helped you, give it a star!**  
-🔁 **Fork it, customize it, make it yours!**
-
-</div>
-#   - A I - P o w e r e d - P r e d i c t i v e - M a i n t e n a n c e - f o r - I o T - D e v i c e s  
- 
