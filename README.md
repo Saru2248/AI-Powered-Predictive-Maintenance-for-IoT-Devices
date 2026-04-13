@@ -149,7 +149,7 @@ AI-Powered Predictive Maintenance for IoT Devices/
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/AI-Predictive-Maintenance-IoT.git
+git clone https://github.com/Saru2248/AI-Predictive-Maintenance-IoT.git
 cd AI-Predictive-Maintenance-IoT
 ```
 
